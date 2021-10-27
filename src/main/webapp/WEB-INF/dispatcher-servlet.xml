@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <context:component-scan base-package="com"/>
+    <mvc:annotation-driven/>
+
+    <bean id="tilesViewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"/>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
+    <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+        <property name="definitions">
+            <list>
+                <value>/WEB-INF/layouts/default.xml</value>
+            </list>
+        </property>
+    </bean>
+
+    <security:http auto-config="true">
+        <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/author/**"
+                                access="hasAnyRole('ROLE_AUTHOR','ROLE_ADMIN')"/>
+
+        <security:form-login
+                login-page="/login"
+                default-target-url="/author/home"
+                authentication-failure-url="/login?error"
+                username-parameter="username"
+                password-parameter="password"
+                login-processing-url="/j_spring_security_check"
+        />
+        <security:logout
+                logout-success-url="/login?logout"
+                logout-url="/logout"
+                invalidate-session="true"
+        />
+        <security:csrf disabled="true"/>
+    </security:http>
+
+    <security:authentication-manager>
+        <security:authentication-provider>
+            <security:jdbc-user-service
+                    data-source-ref="dataSource"
+                    authorities-by-username-query="select username,authority from authorities where username=?"
+                    users-by-username-query="select username,password,enabled from users WHERE username=?"
+            />
+        </security:authentication-provider>
+    </security:authentication-manager>
+    <mvc:resources mapping="/assets/**" location="/WEB-INF/assets/"/>
+
+
+    <tx:annotation-driven/>
+
+</beans>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+    <definition name="base" template="/WEB-INF/templates/default.jsp">
+        <put-attribute name="title" value="Zaw Media"/>
+        <put-attribute name="nav" value="/WEB-INF/tiles/includes/nav.jsp"/>
+        <put-attribute name="content" value=""/>
+        <put-attribute name="footer" value="/WEB-INF/tiles/includes/footer.jsp"/>
+    </definition>
+
+    <definition name="home" extends="base">
+        <put-attribute name="title" value="Home Page"/>
+        <put-attribute name="content" value="/WEB-INF/tiles/public/home.jsp"/>
+    </definition>
+
+    <definition name="contact" extends="base">
+        <put-attribute name="title" value="Contact Page"/>
+        <put-attribute name="content" value="/WEB-INF/tiles/public/contact.jsp"/>
+    </definition>
+
+    <definition name="admin.home" extends="base">
+        <put-attribute name="title" value="Admin Home Page"/>
+        <put-attribute name="content" value="/WEB-INF/tiles/admin/admin.jsp"/>
+    </definition>
+
+    <definition name="author.home" extends="base">
+        <put-attribute name="title" value="Author Home Page"/>
+        <put-attribute name="content" value="/WEB-INF/tiles/author/author.jsp"/>
+    </definition>
+
+    <definition name="admin.cat.all" extends="base">
+        <put-attribute name="title" value="All Categories Page"/>
+        <put-attribute name="content" value="/WEB-INF/tiles/admin/cat/all.jsp"/>
+    </definition>
+
+    <definition name="admin.cat.create" extends="base">
+        <put-attribute name="title" value="Category Create Page"/>
+        <put-attribute name="content" value="/WEB-INF/tiles/admin/cat/create.jsp"/>
+    </definition>
+
+    <definition name="admin.cat.edit" extends="base">
+        <put-attribute name="title" value="Category Edit Page"/>
+        <put-attribute name="content" value="/WEB-INF/tiles/admin/cat/edit.jsp"/>
+    </definition>
+
+    <definition name="author.post.all" extends="base">
+        <put-attribute name="title" value="All Posts Page" />
+        <put-attribute name="content" value="/WEB-INF/tiles/author/post/all.jsp" />
+    </definition>
+
+    <definition name="author.post.create" extends="base">
+        <put-attribute name="title" value="Post Create Page"/>
+        <put-attribute name="content" value="/WEB-INF/tiles/author/post/create.jsp"/>
+    </definition>
+
+    <definition name="author.post.edit" extends="base">
+        <put-attribute name="title" value="Post Edit Page"/>
+        <put-attribute name="content" value="/WEB-INF/tiles/author/post/edit.jsp"/>
+    </definition>
+
+    <definition name="admin.user.all" extends="base">
+        <put-attribute name="title" value="All Users Page"/>
+        <put-attribute name="content" value="/WEB-INF/tiles/admin/user/all.jsp"/>
+    </definition>
+
+    <definition name="login" extends="base">
+        <put-attribute name="title" value="User Login"/>
+        <put-attribute name="content" value="/WEB-INF/tiles/public/login.jsp"/>
+    </definition>
+
+    <definition name="catpage" extends="base">
+        <put-attribute name="title" value="Category Page"/>
+        <put-attribute name="content" value="/WEB-INF/tiles/public/catpage.jsp"/>
+    </definition>
+
+    <definition name="post" extends="base">
+        <put-attribute name="title" value="Single Post Page"/>
+        <put-attribute name="content" value="/WEB-INF/tiles/public/post.jsp"/>
+    </definition>
+
+</tiles-definitions>
