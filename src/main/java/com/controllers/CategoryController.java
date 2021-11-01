@@ -19,42 +19,42 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @RequestMapping("/cat/all")
+    @RequestMapping("/admin/cat/all")
     public String catAll(Model model) {
         List<Category> categories = categoryService.getAllCategory();
         model.addAttribute("categories", categories);
         return "admin.cat.all";
     }
 
-    @RequestMapping("/cat/create")
+    @RequestMapping("/admin/cat/create")
     public String showCatCreatePage(Model model) {
         model.addAttribute("category", new Category());
         return "admin.cat.create";
     }
 
-    @RequestMapping(value = "/cat/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/cat/create", method = RequestMethod.POST)
     public String catCreate(Model model, @ModelAttribute("category") Category category) {
         categoryService.addCategory(category);
-        return "redirect:/cat/all";
+        return "redirect:/admin/cat/all";
     }
 
-    @RequestMapping("/cat/edit/{id}")
+    @RequestMapping("/admin/cat/edit/{id}")
     public String showCatEditPage(Model model, @PathVariable("id") String id) {
         Category category = categoryService.getCategoryById(Integer.parseInt(id));
         model.addAttribute("category", category);
         return "admin.cat.edit";
     }
 
-    @RequestMapping(value = "/cat/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/cat/edit", method = RequestMethod.POST)
     public String catEdit(Model model, @ModelAttribute("category") Category category) {
         categoryService.updateCategory(category);
-        return "redirect:/cat/all";
+        return "redirect:/admin/cat/all";
     }
 
-    @RequestMapping("/cat/delete/{id}")
+    @RequestMapping("/admin/cat/delete/{id}")
     public String showCatDeletePage(Model model, @PathVariable("id") String id) {
         categoryService.deleteCategory(Integer.parseInt(id));
-        return "redirect:/cat/all";
+        return "redirect:/admin/cat/all";
     }
 
     @RequestMapping("/cat/{id}")

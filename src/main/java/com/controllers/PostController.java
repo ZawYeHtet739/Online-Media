@@ -30,7 +30,7 @@ public class PostController {
     @Autowired
     private CategoryService categoryService;
 
-    @RequestMapping("/post/all")
+    @RequestMapping("/author/post/all")
     public String postAll(Model model) {
         List<Post> posts = postService.getAllPost();
 //        for (Post post : posts) {
@@ -45,7 +45,7 @@ public class PostController {
         return "author.post.all";
     }
 
-    @RequestMapping("/post/create")
+    @RequestMapping("/author/post/create")
     public String showPostCreatePage(Model model) {
         List<Category> categories = categoryService.getAllCategory();
         model.addAttribute("categories", categories);
@@ -53,7 +53,7 @@ public class PostController {
         return "author.post.create";
     }
 
-    @RequestMapping(value = "/post/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/author/post/create", method = RequestMethod.POST)
     public String postCreate(Model model, @ModelAttribute("post") Post post, HttpServletRequest request) {
         MultipartFile file = post.getFile();
 
@@ -66,7 +66,7 @@ public class PostController {
         post.setUser_id(1);
         postService.addPost(post);
 
-        return "redirect:/post/all";
+        return "redirect:/author/post/all";
     }
 
     public String saveImage(MultipartFile file, HttpServletRequest request) {
@@ -86,7 +86,7 @@ public class PostController {
         return imageName;
     }
 
-    @RequestMapping("/post/edit/{id}")
+    @RequestMapping("/author/post/edit/{id}")
     public String showPostEditPage(Model model, @PathVariable("id") String id) {
         Post post = postService.getPostById(Integer.parseInt(id));
         List<Category> categories = categoryService.getAllCategory();
@@ -95,7 +95,7 @@ public class PostController {
         return "author.post.edit";
     }
 
-    @RequestMapping(value = "/post/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/author/post/edit", method = RequestMethod.POST)
     public String postEdit(Model model, @ModelAttribute("post") Post post, HttpServletRequest request) {
         MultipartFile file = post.getFile();
 
@@ -105,15 +105,16 @@ public class PostController {
         }
 
         postService.updatePost(post);
-        return "redirect:/post/all";
+        return "redirect:/author/post/all";
     }
 
-    @RequestMapping("/post/delete/{id}")
+    @RequestMapping("/author/post/delete/{id}")
     public String postDelete(Model model, @PathVariable("id") String id) {
         postService.deletePost(Integer.parseInt(id));
-        return "redirect:/post/all";
+        return "redirect:/author/post/all";
     }
 
+    //For Detail Page
     @RequestMapping("/post/{id}")
     public String showSinglePostPage(Model model, @PathVariable("id") String id) {
         Post post = postService.getPostById(Integer.parseInt(id));

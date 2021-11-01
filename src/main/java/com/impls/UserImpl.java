@@ -38,6 +38,14 @@ public class UserImpl implements UserDao {
     }
 
     @Override
+    public User getUserByName(String name) {
+        Query query = session().createQuery("From User where username=:name");
+        query.setParameter("name",name);
+        User user = (User) query.uniqueResult();
+        return user;
+    }
+
+    @Override
     public void addUser(User user) {
         session().save(user);
         session().flush();
@@ -54,4 +62,5 @@ public class UserImpl implements UserDao {
         session().delete(getUserById(id));
         session().flush();
     }
+
 }

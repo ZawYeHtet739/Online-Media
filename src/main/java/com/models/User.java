@@ -1,6 +1,8 @@
 package com.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -10,8 +12,14 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NotNull
+    @Size(min=7,max = 20,message = "User name must be between 7 and 20 char!")
     private String username;
+    @NotNull
+    @Size(min=7,max = 20,message = "Password must be between 7 and 20 char!")
     private String password;
+    @NotNull
+    @Size(min=7,max = 20,message = "Email must be between 7 and 20 char!")
     private String email;
     private boolean enabled;
     @Transient

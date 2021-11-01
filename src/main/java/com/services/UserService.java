@@ -21,6 +21,10 @@ public class UserService {
         return userDao.getUserById(id);
     }
 
+    public User getUserByName(String name) {
+        return userDao.getUserByName(name);
+    }
+
     public void addUser(User user) {
        userDao.addUser(user);
     }
@@ -32,4 +36,5 @@ public class UserService {
     public void deleteUserById(int id) {
         userDao.deleteUserById(id);
     }
+
 }

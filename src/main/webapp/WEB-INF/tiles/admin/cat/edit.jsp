@@ -3,7 +3,7 @@
     <h1 class="text-info text-center mb-3">Category Edit Page</h1>
     <div class="col-md-6 offset-md-3">
 
-        <form:form action="/cat/edit" method="post" modelAttribute="category">
+        <form:form action="/admin/cat/edit" method="post" modelAttribute="category">
 
             <form:input type="hidden" name="id" value="${category.id}" path="id"/>
 

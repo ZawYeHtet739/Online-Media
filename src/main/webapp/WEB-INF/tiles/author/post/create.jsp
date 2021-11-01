@@ -3,7 +3,7 @@
 <div class="container my-5">
 
     <h1 class="text-info text-center mb-3">Post Create Page</h1>
-    <form:form method="post" modelAttribute="post" action="/post/create" enctype="multipart/form-data">
+    <form:form method="post" modelAttribute="post" action="/author/post/create" enctype="multipart/form-data">
         <div class="form-group">
             <label for="cat_id">Category</label>
             <form:select class="form-control" id="cat_id" name="cat_id" path="cat_id">

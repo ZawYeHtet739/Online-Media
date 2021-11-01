@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="container my-5">
-    <a href="/post/create" class="btn btn-primary btn-sm mb-3">Create <i class="fa fa-plus"></i></a>
+    <a href="/author/post/create" class="btn btn-primary btn-sm mb-3">Create <i class="fa fa-plus"></i></a>
 
     <table class="table table-bordered">
         <thead>
@@ -28,8 +28,8 @@
                 <td>${post.content}</td>
                 <td>${post.created_at}</td>
                 <td>
-                    <a href="/post/edit/${post.id}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
-                    <a href="/post/delete/${post.id}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                    <a href="/author/post/edit/${post.id}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                    <a href="/author/post/delete/${post.id}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                 </td>
             </tr>
         </c:forEach>

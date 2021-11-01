@@ -13,6 +13,7 @@
 <body>
 
 <tiles:insertAttribute name="nav"></tiles:insertAttribute>
+<tiles:insertAttribute name="menu"></tiles:insertAttribute>
 <tiles:insertAttribute name="content"></tiles:insertAttribute>
 <tiles:insertAttribute name="footer"></tiles:insertAttribute>
 
