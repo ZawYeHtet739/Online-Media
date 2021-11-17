@@ -12,7 +12,9 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc.xsd
        http://www.springframework.org/schema/tx
-       http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/security
+         http://www.springframework.org/schema/security/spring-security.xsd">
 
     <context:component-scan base-package="com"/>
     <mvc:annotation-driven/>
@@ -59,8 +61,8 @@
             />
         </security:authentication-provider>
     </security:authentication-manager>
-    <mvc:resources mapping="/assets/**" location="/WEB-INF/assets/"/>
 
+    <mvc:resources mapping="/assets/**" location="/WEB-INF/assets/"/>
 
     <tx:annotation-driven/>
 

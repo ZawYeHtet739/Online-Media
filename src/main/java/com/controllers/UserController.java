@@ -1,9 +1,10 @@
 package com.controllers;
 
 import com.models.Authority;
-import com.models.Post;
+import com.models.Category;
 import com.models.User;
 import com.services.AuthorityService;
+import com.services.CategoryService;
 import com.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -24,18 +26,24 @@ public class UserController {
     @Autowired
     private AuthorityService authorityService;
 
+    @Autowired
+    private CategoryService categoryService;
+
     @RequestMapping("/login")
     public String login(
             @RequestParam(name = "error", required = false) String error,
             @RequestParam(name = "logout", required = false) String logout,
-            Model model
-    ) {
+            Model model, HttpSession session
+            ) {
+        List<Category> categories = categoryService.getAllCategory();
+        session.setAttribute("categories", categories);
+
         if (error != null) {
-            model.addAttribute("error","Login Error,Please try again!!!!");
+            model.addAttribute("error", "Login Error,Please try again!!!!");
         }
 
         if (logout != null) {
-            model.addAttribute("logout","Logout Successful!!!");
+            model.addAttribute("logout", "Logout Successful!!!");
         }
         return "login";
     }
@@ -58,7 +66,7 @@ public class UserController {
         } else {
             userService.addUser(user);
             authorityService.addAuthority(new Authority(user.getUsername(), "ROLE_AUTHOR"));
-            model.addAttribute("register_success","Register Successful! Please Login");
+            model.addAttribute("register_success", "Register Successful! Please Login");
             return "login";
         }
 

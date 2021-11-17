@@ -1,8 +1,13 @@
 package com.models;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "posts")
@@ -11,16 +16,28 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private int user_id;
     private int cat_id;
+    @NotNull
+    @Size(min=3,max = 20,message = "Title must be between 3 and 20 char!")
     private String title;
+
     private String image;
+
+    @NotNull
+    @Size(min=3,max = 40,message = "Content must be between 3 and 40 char!")
     private String content;
-    @Transient // declare for not to add in database
-    private String created_at;
+
+//    @Transient // declare for not to add in database
+//    private String created_at;
+
+    @CreationTimestamp
+    @Column(name="created_at", nullable = false, updatable = false, insertable = false)
+    private Timestamp created_at;
+
     @Transient
     private String update_at;
+
     @Transient
     MultipartFile file;
 
@@ -106,11 +123,12 @@ public class Post {
         this.content = content;
     }
 
-    public String getCreated_at() {
+
+    public Timestamp getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(String created_at) {
+    public void setCreated_at(Timestamp created_at) {
         this.created_at = created_at;
     }
 

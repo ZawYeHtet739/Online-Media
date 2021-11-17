@@ -3,7 +3,7 @@
 <div class="container my-5">
 
     <h1 class="text-info text-center mb-3">Post Edit Page</h1>
-    <form:form method="post" modelAttribute="post" action="/post/edit" enctype="multipart/form-data">
+    <form:form method="post" modelAttribute="post" action="/author/post/edit" enctype="multipart/form-data">
 
         <form:input name="id" value="${post.id}" type="hidden" path="id"/>
         <form:input name="user_id" value="${post.user_id}" type="hidden" path="user_id"/>

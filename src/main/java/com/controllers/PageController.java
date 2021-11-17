@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -27,11 +28,11 @@ public class PageController {
     private UserService userService;
 
     @RequestMapping("/")
-    public String home(Model model) {
+    public String home(HttpSession session,Model model) {
         List<Post> posts = postService.getAllPost();
         List<Category> categories = categoryService.getAllCategory();
         model.addAttribute("posts", posts);
-        model.addAttribute("categories", categories);
+        session.setAttribute("categories", categories);
         return "home";
     }
 
@@ -64,11 +65,12 @@ public class PageController {
         User user = userService.getUserByName(username);
         List<Post> posts = user.getPosts();
         model.addAttribute("posts",posts);
+
         return "author.home";
     }
 
     @RequestMapping("/user/home")
-    public String userHome() {
+    public String userHome(Model model) {
 
         // Check Admin or Author
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
